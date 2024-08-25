@@ -78,7 +78,7 @@ exports.deleteListing = async(req,res)=>{
             listing
         })
     }catch(error){
-        cnsole.error(error.message)
+        console.error(error.message)
     }
 }
 

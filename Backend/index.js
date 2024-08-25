@@ -7,6 +7,7 @@ const {cloudinaryConfig} = require("./config/CloudinaryConfig")
 const listingRouter = require("./routes/listing")
 const fileUpload = require("express-fileupload")
 const ratingReviewRouter = require("./routes/ratingAndReview")
+const cors = require("cors")
 
 const PORT = process.env.PORT || 4000 ;
 
@@ -15,6 +16,10 @@ cloudinaryConfig().then(()=>console.log("Cloudinary Connected Successfully"))
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
+
+app.use(cors({
+	origin : "*"
+}))
 
 app.use(
 	fileUpload({
