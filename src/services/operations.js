@@ -27,15 +27,13 @@ export const SignUp = async (body,navigate) => {
 export const login = (body, navigate) => {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...");
-    console.log("one");
     try {
-      console.log("two");
       const res = await apiConnector("POST", LOGIN, body);
       console.log("three");
       console.log(res);
       if (res?.data?.success) {
         toast.success("Login Successfully");
-        navigate("/dashboard");
+        navigate("/dashboard/all");
         dispatch(setToken(res?.data?.token))
         dispatch(setUser(res?.data?.user));
         sessionStorage.setItem("token",JSON.stringify(res?.data?.token))
