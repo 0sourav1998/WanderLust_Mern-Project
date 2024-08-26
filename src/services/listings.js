@@ -2,7 +2,7 @@ import toast from "react-hot-toast";
 import { apiConnector } from "../services/apiConnector";
 import { listingEndpoints } from "./apis";
 
-const {ALLLISTINGS,CREATE_LISTING} = listingEndpoints ;
+const {ALLLISTINGS,CREATE_LISTING,LISTING_DETAILS} = listingEndpoints ;
 
 export const fetchAllListings = async()=>{
     const toastId = toast.loading("Loading...")
@@ -32,3 +32,23 @@ export const createListing = async(body,navigate)=>{
     }
     toast.dismiss(toastId)
 }
+
+export const fetchSpecificListing = async (body) => {
+    let result;
+    const toastId = toast.loading("Loading...");
+  
+    try {
+      const res = await apiConnector("POST", LISTING_DETAILS, body);
+      if (res?.data?.success) {
+        result = res?.data?.listing;
+      }
+    } catch (error) {
+      console.error("Error fetching listing details:", error.message);
+      toast.error("Failed to load listing details. Please try again.");
+    } finally {
+      toast.dismiss(toastId);
+    }
+  
+    return result;
+  };
+  

@@ -5,9 +5,18 @@ const User = require("../models/User");
 exports.createRatingReviews = async(req,res)=>{
     try{
         const {listingId,rating,reviews} = req.body ;
+        if(!listingId || !rating || !reviews){
+            return res.status(400).json({
+                success : true ,
+                message : "All fields are required"
+            })
+        }
+        const owner = await User.findOne({listings : listingId})
         const createdRatingsAndReviews = await RatingAndReviews.create({
             rating : rating ,
             reviews : reviews,
+            listing : listingId ,
+            owner : owner._id
         })
         await Listing.findByIdAndUpdate(listingId,{$push : {ratingReviews : createdRatingsAndReviews._id}},{new:true});
         return res.status(200).json({
@@ -22,7 +31,14 @@ exports.createRatingReviews = async(req,res)=>{
 exports.deleteRatingReviews = async(req,res)=>{
     try{
         const {listingId,ratingReviewId}=req.body;
-        const ratingAndReviews = await RatingAndReviews.findByIdAndDelete(ratingReviewId);
+        if(!listingId || !ratingReviewId){
+            return res.status(400).json({
+                success: false ,
+                message : "All Fields Are Required"
+            })
+        }
+        await RatingAndReviews.findByIdAndDelete(ratingReviewId);
+        const ratingAndReviews =  await RatingAndReviews.find({})
         const listing = await Listing.findByIdAndUpdate(listingId,{$pull : {ratingReviews : ratingReviewId}},{new:true});
         return res.status(200).json({
             success : true ,
@@ -49,6 +65,35 @@ exports.editRatingAndReview = async(req,res)=>{
             success : true ,
             message : "Rating And Review Updated Successfully",
             ratingAndReview
+        })
+    }catch(error){
+        console.error(error.message)
+    }
+}
+
+exports.fetchAllReviews = async(req,res)=>{
+    try{
+        const result = await RatingAndReviews.find({});
+        return res.status(200).json({
+            success : true ,
+            message : "Rating Reviews Fetched" ,
+            result
+        })
+    }catch(error){
+        console.error(error.message)
+    }
+}
+
+exports.fetchReviewForSpecificListing = async(req,res)=>{
+    try{
+        const {listingId} = req.body ;
+        console.log(listingId)
+        const response = await RatingAndReviews.find({ listing : listingId});
+        console.log("RESPONSE",response)
+        return res.status(200).json({
+            success : true ,
+            message : "Reviews Fetched Successfully",
+            response
         })
     }catch(error){
         console.error(error.message)

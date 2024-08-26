@@ -9,11 +9,13 @@ const ratingAndReviewSchema = new mongoose.Schema({
     },
     owner : {
         type : mongoose.Schema.ObjectId,
-        ref : "User"
+        ref : "User",
+        required: true ,
     } ,
     listing : {
         type : mongoose.Schema.ObjectId,
-        ref : "Listing"
+        ref : "Listing" ,
+        required :true 
     }
 })
 
