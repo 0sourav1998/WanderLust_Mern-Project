@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body{
-    background-color:black;
+    background: linear-gradient(to right, #2d038f, #148c5a);
     height: 100vh;
     max-width: 100vw;
     overflow-x: hidden;

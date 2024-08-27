@@ -29,7 +29,7 @@ const CreateListing = () => {
     <form
       onSubmit={handleSubmit(handleCreateListing)}
       enctype="multipart/form-data"
-      className="bg-gray-900 p-8 rounded-lg shadow-lg w-full max-w-md mx-auto mt-10 transform transition-all duration-300 hover:shadow-xl"
+      className="relative -z-10 bg-gray-900 p-4 rounded-lg shadow-lg w-full max-w-md mx-auto mt-10 transform transition-all duration-300 hover:shadow-xl"
     >
       <h1 className="text-white text-3xl mb-6 text-center font-bold">Create a Listing</h1>
       <div className="flex flex-col mb-6">

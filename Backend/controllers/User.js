@@ -1,6 +1,8 @@
 const User = require("../models/User")
 const bcrypt = require("bcryptjs") ;
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
+const { cloudinaryUpload } = require("../utils/cloudinaryUpload");
+require("dotenv").config()
 
 exports.signup = async(req,res)=>{
     try{
@@ -75,5 +77,33 @@ exports.login = async(req,res)=>{
         }
     }catch(error){
         console.log(error.message)
+    }
+}
+
+exports.uploadImage = async(req,res)=>{
+    try{
+        console.log("One")
+        console.log(req.files)
+        const {File} = req.files; 
+        const {userId} = req.body ;
+        console.log(File)
+        const user = await User.findById(userId);
+        console.log(user)
+        if(!user){
+            return res.status(404).json({
+                success : false ,
+                message : "User not found"
+            })
+        }
+        const result = await cloudinaryUpload(File,process.env.CLOUD_FOLDER);
+        user.image = result.secure_url;
+        await user.save() ;
+        return res.status(200).json({
+            success : true ,
+            message : "Image Uploaded" ,
+            image : user.image
+        })
+    }catch(error){
+        console.error(error.message)
     }
 }

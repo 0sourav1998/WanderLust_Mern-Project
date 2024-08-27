@@ -9,12 +9,18 @@ import MyListing from './components/MyListing';
 import Bookmark from './components/Bookmark';
 import CreateListing from './components/CreateListing';
 import ListingDetails from './components/ListingDetails';
+import UserImageUpload from './components/UserImageUpload';
+import { useSelector } from 'react-redux';
 
 function App() {
+  const {image} = useSelector((state)=>state.user)
   return (
    <Routes>
     <Route element={<Signup/>} path="/signup" />
     <Route element={<Login/>} path="/login" />
+    {
+      !image && <Route element={<UserImageUpload/>} path='/userimage'/>
+    }
     <Route element={<Dashboard/>}>
        <Route element={<Listing/>} path="/dashboard/all"/>
        <Route element={<MyListing/>} path="/dashboard/mylistings"/>

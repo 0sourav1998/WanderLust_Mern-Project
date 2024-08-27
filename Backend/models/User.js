@@ -12,7 +12,14 @@ const userSchema = new mongoose.Schema({
     listings : [{
         type : mongoose.Schema.ObjectId,
         ref : "Listing"
-    }]
+    }] ,
+    bookmarkedListings : [{
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "Listing"
+    }] ,
+    image : {
+        type : String
+    }
 })
 
 module.exports = mongoose.model("User",userSchema)

@@ -1,19 +1,14 @@
 import toast from "react-hot-toast";
 import { apiConnector } from "../services/apiConnector";
 import { authEndpoints } from "./apis";
-import { setToken, setUser } from "../slice/user";
+import { setImage, setToken, setUser } from "../slice/user";
 
-const { LOGIN, SIGNUP } = authEndpoints;
-console.log("Sign up", SIGNUP);
+const { LOGIN, SIGNUP, UPLOAD_IMAGE } = authEndpoints;
 
 export const SignUp = async (body, navigate) => {
   const toastId = toast.loading("Loading...");
-  console.log("one");
   try {
-    console.log("two");
     const res = await apiConnector("POST", SIGNUP, body);
-    console.log("three");
-    console.log(res);
     if (res?.data?.success) {
       toast.success("Sign Up Successfully");
     }
@@ -29,15 +24,19 @@ export const login = (body, navigate) => {
     const toastId = toast.loading("Loading...");
     try {
       const res = await apiConnector("POST", LOGIN, body);
-      console.log("three");
-      console.log(res);
       if (res?.data?.success) {
         toast.success("Login Successfully");
-        navigate("/dashboard/all");
-        dispatch(setToken(res?.data?.token));
-        dispatch(setUser(res?.data?.user));
-        sessionStorage.setItem("token", JSON.stringify(res?.data?.token));
-        sessionStorage.setItem("user", JSON.stringify(res?.data?.user));
+          dispatch(setToken(res?.data?.token));
+          dispatch(setUser(res?.data?.user));
+          sessionStorage.setItem("token", JSON.stringify(res?.data?.token));
+          sessionStorage.setItem("user", JSON.stringify(res?.data?.user));
+          if(res?.data?.user?.image){
+            dispatch(setImage(res?.data?.user.image));
+            sessionStorage.setItem("image", JSON.stringify(res?.data?.user?.image));
+            navigate("/dashboard/all")
+          }else{
+            navigate("/userimage");
+          }
       }
     } catch (error) {
       console.error(error.message);
@@ -52,8 +51,10 @@ export const logout = (navigate) => {
     try {
       dispatch(setUser(null));
       dispatch(setToken(null));
+      dispatch(setImage(null));
       sessionStorage.removeItem("user");
       sessionStorage.removeItem("token");
+      sessionStorage.removeItem("image");
       toast.success("Logged Out");
       navigate("/login");
     } catch (error) {
@@ -61,4 +62,26 @@ export const logout = (navigate) => {
       toast.error("Logout failed");
     }
   };
+};
+
+export const uploadImage = (body, navigate) => {
+  return async(dispatch)=>{
+    const toastId = toast.loading("Loading...")
+    try {
+      const response = await apiConnector("POST", UPLOAD_IMAGE, body, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      if (response?.data?.success) {
+          dispatch(setImage(response?.data?.image));
+          sessionStorage.setItem("image", JSON.stringify(response?.data?.image));
+          navigate("/dashboard/all");
+      }
+    } catch (error) {
+      console.error(error.message);
+    }finally{
+      toast.dismiss(toastId)
+    }
+  }
 };

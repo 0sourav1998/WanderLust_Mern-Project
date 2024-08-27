@@ -5,7 +5,7 @@ import { FaBookmark } from "react-icons/fa";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { IoCreateSharp } from "react-icons/io5";
 import { RiLogoutBoxRLine } from "react-icons/ri";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../services/operations';
 import ConfirmationModal from './ConfirmationModal';
 
@@ -13,6 +13,7 @@ const Sidebar = () => {
   const navigate = useNavigate() ;
   const location = useLocation();
   const dispatch = useDispatch();
+  const {image} = useSelector((state)=>state.user)
   const [confirmationModal,setConfirmationModal] = useState(false)
   const matchPath = (path)=>{
     return path === location.pathname
@@ -23,7 +24,10 @@ const Sidebar = () => {
   }
   return (
     <div>
-      <div className='flex flex-col justify-center items-center mt-[80px]'>
+      <div className='flex flex-col justify-center items-center mt-[40px]'>
+        {
+          image && <img src={image} className='h-[40px] w-[40px] rounded-full mb-10' alt='image'/>
+        }
         <HiTrendingUp className={`text-2xl ${matchPath("/dashboard/all") ? "text-white" : "text-slate-500"} mb-10 cursor-pointer`} onClick={()=>navigate("/dashboard/all")}/>
         <FaHotel className={`text-2xl ${matchPath("/dashboard/mylistings") ? "text-white" : "text-slate-500"} mb-10 cursor-pointer`} onClick={()=>navigate("/dashboard/mylistings")}/>
         <FaBookmark className={`text-2xl ${matchPath("/dashboard/bookmark") ? "text-white" : "text-slate-500"} mb-10 cursor-pointer`} onClick={()=>navigate("/dashboard/bookmark")}/>
