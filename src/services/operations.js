@@ -56,7 +56,7 @@ export const logout = (navigate) => {
       sessionStorage.removeItem("token");
       sessionStorage.removeItem("image");
       toast.success("Logged Out");
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       console.error(error.message);
       toast.error("Logout failed");

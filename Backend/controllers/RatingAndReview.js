@@ -4,24 +4,24 @@ const User = require("../models/User");
 
 exports.createRatingReviews = async(req,res)=>{
     try{
-        const {listingId,rating,reviews} = req.body ;
+        const {listingId,rating,reviews,ownerId} = req.body ;
         if(!listingId || !rating || !reviews){
             return res.status(400).json({
                 success : true ,
                 message : "All fields are required"
             })
         }
-        const owner = await User.findOne({listings : listingId})
         const createdRatingsAndReviews = await RatingAndReviews.create({
             rating : rating ,
             reviews : reviews,
             listing : listingId ,
-            owner : owner._id
+            owner : ownerId
         })
         await Listing.findByIdAndUpdate(listingId,{$push : {ratingReviews : createdRatingsAndReviews._id}},{new:true});
         return res.status(200).json({
             success : true ,
-            message : "Rating And Review Created"
+            message : "Rating And Review Created",
+            review : createdRatingsAndReviews
         })
     }catch(error){
         console.log(error.message)
@@ -87,9 +87,13 @@ exports.fetchAllReviews = async(req,res)=>{
 exports.fetchReviewForSpecificListing = async(req,res)=>{
     try{
         const {listingId} = req.body ;
-        console.log(listingId)
+        if(!listingId){
+            return res.status(400).json({
+                success : false ,
+                message : "This field is required"
+            })
+        }
         const response = await RatingAndReviews.find({ listing : listingId});
-        console.log("RESPONSE",response)
         return res.status(200).json({
             success : true ,
             message : "Reviews Fetched Successfully",

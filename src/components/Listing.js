@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { fetchAllListings } from "../services/listings";
 import ListingCard from "./ListingCard";
+import { useSelector } from "react-redux";
 
 const Listing = () => {
   const listingRef = useRef(null);
@@ -25,9 +26,9 @@ const Listing = () => {
     const filteredListings = listings.filter((listing) =>
       listing.name.toLowerCase().includes(searchResult.toLowerCase())
     );
-    console.log(filteredListings);
     setListings(filteredListings);
   };
+  const {isLoggout} = useSelector((state)=>state.user)
 
   useEffect(() => {
     fetchAllListing();

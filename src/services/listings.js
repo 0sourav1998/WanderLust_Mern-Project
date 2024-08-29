@@ -2,7 +2,7 @@ import toast from "react-hot-toast";
 import { apiConnector } from "../services/apiConnector";
 import { listingEndpoints } from "./apis";
 
-const {ALLLISTINGS,CREATE_LISTING,LISTING_DETAILS,USER_LISTINGS , ADD_BOOKMARK, FETCH_BOOKMARK_LISTING , REMOVE_BOOKMARK} = listingEndpoints ;
+const {ALLLISTINGS,CREATE_LISTING,LISTING_DETAILS,USER_LISTINGS , ADD_BOOKMARK, FETCH_BOOKMARK_LISTING , REMOVE_BOOKMARK , DELETE_LISTING , EDIT_LISTING} = listingEndpoints ;
 
 export const fetchAllListings = async()=>{
     const toastId = toast.loading("Loading...")
@@ -123,3 +123,38 @@ export const fetchSpecificListing = async (body) => {
     return result ;
   }
   
+
+  export const deleteListing = async(body)=>{
+    const toastId = toast.loading("Loading...")
+    let result ;
+    try{
+      const response = await apiConnector("DELETE",DELETE_LISTING,body);
+      if(response?.data?.success){
+        console.log(response);
+        result = response?.data.listings;
+        toast.success("Listing Deleted")
+      }
+    }catch(error){
+      console.error(error);
+      toast.error("Failed to Delete")
+    }finally{
+      toast.dismiss(toastId)
+    }
+    return result ;
+  }
+
+  export const modifyListing = async(body)=>{
+    const toastId = toast.loading("Loading...");
+    let result ;
+    try{
+      const res= await apiConnector("PUT",EDIT_LISTING,body);
+      if(res?.data?.success){
+        toast.success("Listing Updated")
+      }
+    }catch(error){
+      toast.error("Listing Updation Failed")
+    }finally{
+      toast.dismiss(toastId)
+    }
+    return result
+  }

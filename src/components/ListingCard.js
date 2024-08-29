@@ -6,7 +6,6 @@ import { addListingAsBookmark, fetchBookmarkListing, removeBookmark } from "../s
 
 const ListingCard = ({ listing }) => {
   const [bookmark, setBookmark] = useState([]);
-  console.log("Bookmark",bookmark)
   const { user } = useSelector((state) => state.user);
 
   const fetchListing = async()=>{
@@ -40,9 +39,9 @@ const ListingCard = ({ listing }) => {
   };
 
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center ">
       <Link to={`/dashboard/listing/${listing._id}`}>
-        <div className="relative -z-10">
+        <div className="relative">
           <div className="h-[350px] w-[350px] bg-slate-950 rounded-lg overflow-hidden shadow-md shadow-white hover:opacity-60 hover:cursor-pointer transition-all duration-200">
             <img
               src={listing.image}
@@ -58,7 +57,7 @@ const ListingCard = ({ listing }) => {
             </div>
           </div>
           <FaBookmark
-            className={`absolute top-8 right-8 ${
+            className={`absolute top-5 right-8 ${
               isBookmarked() ? "text-blue-500" : "text-white"
             }`}
             onClick={bookmarkAddOrRemove}

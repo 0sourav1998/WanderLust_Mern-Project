@@ -16,11 +16,14 @@ export const listingEndpoints = {
     ADD_BOOKMARK : `${BASE_URL}/listing/addBookmark`,
     FETCH_BOOKMARK_LISTING : `${BASE_URL}/listing/fetchBookmarkListing` ,
     REMOVE_BOOKMARK : `${BASE_URL}/listing/removeBookmark`,
+    DELETE_LISTING : `${BASE_URL}/listing/deleteListing` ,
+    EDIT_LISTING : `${BASE_URL}/listing/editListing` ,
 }
 
 export const ratingReviewEndpoint = {
     CREATE_RATING_REVIEW : `${BASE_URL}/ratingAndReview/create`,
     FETCH_ALL : `${BASE_URL}/ratingAndReview/fetchAllReviews`,
     DELETE_REVIEW : `${BASE_URL}/ratingAndReview/delete`,
-    FETCH_REVIEW : `${BASE_URL}/ratingAndReview/specificreview`
+    FETCH_REVIEW : `${BASE_URL}/ratingAndReview/specificreview`,
+    EDIT_REVIEW : `${BASE_URL}/ratingAndReview/edit`
 } 

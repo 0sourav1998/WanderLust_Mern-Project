@@ -8,6 +8,7 @@ import { RiLogoutBoxRLine } from "react-icons/ri";
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../services/operations';
 import ConfirmationModal from './ConfirmationModal';
+import { setIsLoggedout } from '../slice/user';
 
 const Sidebar = () => {
   const navigate = useNavigate() ;
@@ -32,14 +33,21 @@ const Sidebar = () => {
         <FaHotel className={`text-2xl ${matchPath("/dashboard/mylistings") ? "text-white" : "text-slate-500"} mb-10 cursor-pointer`} onClick={()=>navigate("/dashboard/mylistings")}/>
         <FaBookmark className={`text-2xl ${matchPath("/dashboard/bookmark") ? "text-white" : "text-slate-500"} mb-10 cursor-pointer`} onClick={()=>navigate("/dashboard/bookmark")}/>
         <IoCreateSharp className={`text-2xl ${matchPath("/dashboard/createListing") ? "text-white" : "text-slate-500"} mb-10 cursor-pointer`} onClick={()=>navigate("/dashboard/createListing")}/>
-        <RiLogoutBoxRLine className={`text-2xl text-slate-500 mb-10 cursor-pointer`} onClick={()=>setConfirmationModal({
-          text1 : "Are You Sure?",
-          text2 : "You Will Be Logged Out",
-          btn1Text : "Cancel",
-          btn2Text : "Logout",
-          btn1Handler : ()=>setConfirmationModal(false),
-          btn2Handler : handleLogout
-        })}/>
+        <button
+              className="text-white cursor-pointer p-2 rounded-md w-fit h-fit hover:text-red-800 text-2xl transition-all duration-200 group"
+              onClick={() =>
+                setConfirmationModal({
+                  text1: "Are You Sure?",
+                  text2: "You Will be logged out",
+                  btn1Text: "Cancel",
+                  btn2Text: "Logout",
+                  btn1Handler: () => setConfirmationModal(null),
+                  btn2Handler: handleLogout,
+                })
+              }
+            >
+              <RiLogoutBoxRLine />
+            </button>
       </div>
       {
         confirmationModal && <ConfirmationModal modalData={confirmationModal} />

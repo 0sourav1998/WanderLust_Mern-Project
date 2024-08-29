@@ -7,7 +7,7 @@ const User = require("../models/User");
 exports.createListing = async (req, res) => {
   try {
     const { name, description, price, location, owner, country } = req.body;
-    const file = req.files.file;
+    const file = req.files ? req.files.file : null;
     const user = await User.findOne({ _id: owner });
     if (!owner) {
       return res.status(404).json({
@@ -25,7 +25,6 @@ exports.createListing = async (req, res) => {
       country,
       image: result.secure_url,
     });
-    console.log("User............................", user);
     await User.findByIdAndUpdate(user._id, {
       $push: { listings: createdListing._id },
     });
@@ -42,6 +41,14 @@ exports.createListing = async (req, res) => {
 exports.editListing = async (req, res) => {
   try {
     const { listingId, name, description, price, location, country } = req.body;
+    console.log(req.files)
+    const file = req.files ? req.files.file : null;
+    if(!listingId){
+      return res.status(400).json({
+        success : false ,
+        message : "This field is required"
+      })
+    }
     const listing = await Listing.findById(listingId);
     if (name) {
       listing.name = name;
@@ -58,6 +65,11 @@ exports.editListing = async (req, res) => {
     if (price) {
       listing.country = country;
     }
+    if(file){
+      const res = await cloudinaryUpload(file,process.env.CLOUD_FOLDER);
+      console.log(res)
+      listing.image = res.secure_url ;
+    }
     await listing.save();
     return res.status(200).json({
       success: true,
@@ -72,12 +84,20 @@ exports.editListing = async (req, res) => {
 exports.deleteListing = async (req, res) => {
   try {
     const { listingId, userId } = req.body;
-    const listing = await Listing.findByIdAndDelete(listingId);
-    await User.findByIdAndUpdate(userId, { $pull: { listings: listingId } });
+    if(!listingId || !userId){
+      return res.status(400).json({
+        suucees : false ,
+        message : "All fileds are required"
+      })
+    }
+    await Listing.findByIdAndDelete(listingId);
+    await RatingAndReviewss.deleteMany({listing : listingId})
+    const listings = await Listing.findById(listingId)
+    await User.findByIdAndUpdate(userId, { $pull: { listings: listingId } } , {new : true});
     return res.status(200).json({
       success: true,
       message: "Listing Deleted",
-      listing,
+      listings
     });
   } catch (error) {
     console.error(error.message);
