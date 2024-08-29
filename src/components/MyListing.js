@@ -31,7 +31,7 @@ const MyListing = () => {
   if (listings.length === 0) {
     return (
       <div className="h-screen w-screen flex justify-center items-center">
-        <div className="text-white bg-slate-900 shadow-md shadow-white rounded-md h-[150px] w-[600px] flex flex-col justify-center items-center">
+        <div className="text-white mr-24 bg-slate-900 shadow-md shadow-white rounded-md h-[150px] w-[600px] flex flex-col justify-center items-center">
           <p className="text-2xl mt-4">No Listings Cretaed so far</p>
           <button
             className="bg-green-600 rounded-md cursor-pointer py-2 px-4 hover:scale-90 mt-4 w-fit transition-all duration-200"
@@ -44,7 +44,7 @@ const MyListing = () => {
     );
   }
   return (
-    <div className="text-white text-3xl ml-36 mt-8 mb-10">
+    <div className="text-white text-3xl ml-12 mt-8 mb-10">
       <div className="mb-4">
         <h1>My Listings</h1>
       </div>

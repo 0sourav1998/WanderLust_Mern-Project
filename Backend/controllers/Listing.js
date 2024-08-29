@@ -93,7 +93,7 @@ exports.deleteListing = async (req, res) => {
     await Listing.findByIdAndDelete(listingId);
     await RatingAndReviewss.deleteMany({listing : listingId})
     const listings = await Listing.findById(listingId)
-    await User.findByIdAndUpdate(userId, { $pull: { listings: listingId } } , {new : true});
+    await User.findByIdAndUpdate(userId, { $pull: { listings: listingId ,  bookmarkedListings : listingId} } , {new : true});
     return res.status(200).json({
       success: true,
       message: "Listing Deleted",

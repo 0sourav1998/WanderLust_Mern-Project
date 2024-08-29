@@ -46,7 +46,7 @@ const AllReviews = ({ listingId }) => {
     );
   }
   return (
-    <div className="text-white text-xl mt-10 bg-slate-800 p-6 rounded-lg shadow-lg mb-10 ml-56">
+    <div className="text-white text-xl mt-10 bg-slate-800 p-6 rounded-lg shadow-lg mb-10 ml-24">
       <h1 className="text-white text-2xl text-center mb-4">All Reviews</h1>
         <Swiper
           pagination={{ clickable: true }}

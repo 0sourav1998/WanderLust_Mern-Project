@@ -15,7 +15,7 @@ const Bookmark = () => {
     fetchListing();
   }, []);
   return (
-    <div className="flex flex-col gap-6 ml-36 mt-10 mb-10">
+    <div className="flex flex-col gap-6 ml-12 mt-10 mb-10">
       <div><h1 className="text-white text-3xl">My Bookmarks</h1></div>
       <div className="flex flex-wrap gap-10">
       {myBookmarks.map((listing) => (

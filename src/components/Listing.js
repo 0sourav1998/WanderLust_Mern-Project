@@ -34,7 +34,7 @@ const Listing = () => {
     fetchAllListing();
   }, []);
   return (
-    <div className="text-white text-3xl ml-36 mt-8 mb-10">
+    <div className="text-white text-3xl ml-12 mt-8 mb-10">
       <div className="mb-4 flex justify-between">
         <div>
           <h1>All Listings</h1>

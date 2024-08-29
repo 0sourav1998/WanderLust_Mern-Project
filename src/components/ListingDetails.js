@@ -58,7 +58,7 @@ const ListingDetails = () => {
 
   return (
     <div className="flex flex-col -mt-[50px]">
-      <div className="flex flex-col lg:flex-row bg-gray-900 text-white p-8 rounded-lg shadow-lg max-w-4xl mx-auto mt-20">
+      <div className="flex flex-col lg:flex-row bg-gray-900 text-white p-8 rounded-lg shadow-lg max-w-4xl ml-24 mt-24">
         <div className="lg:w-1/2 mb-6 lg:mb-0">
           <img
             src={listingDetail.image}
@@ -96,9 +96,6 @@ const ListingDetails = () => {
           onClick={handleToggleReview}
         >
           <FcRating className="text-xl" />
-          <p className="absolute top-12 left-1 opacity-0 group-hover:opacity-100 transition-all duration-200 text-[7px]">
-            Add Review
-          </p>
         </button>
         {user._id === listingDetail.owner && (
           <div className="flex gap-2">
