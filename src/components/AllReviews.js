@@ -42,25 +42,39 @@ const AllReviews = ({ listingId }) => {
 
   if (!reviews) {
     return (
-      <div className="text-white text-3xl text-center">No Reviews Found</div>
+      <div className="text-white sm:text-3xl text-xl text-center">No Reviews Found</div>
     );
   }
   return (
-    <div className="text-white text-xl mt-10 bg-slate-800 p-6 rounded-lg shadow-lg mb-10 ml-24">
+    <div className="text-white sm:text-xl text-lg sm:mt-10 mt-4 bg-slate-800 sm:p-6 p-3 rounded-lg sm:shadow-lg shadow-md sm:mb-10 mb-4 sm:ml-24 ml-1 mr-1">
       <h1 className="text-white text-2xl text-center mb-4">All Reviews</h1>
         <Swiper
           pagination={{ clickable: true }}
           modules={[Pagination]}
-          slidesPerView={3}
-          spaceBetween={30}
+          // slidesPerView={3}
+          // spaceBetween={30}
+          breakpoints={{
+            260: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+          }}
           loop={true}
         >
           {reviews &&
             reviews.map((review, index) => (
               <SwiperSlide key={index}>
-                <div className="relative bg-gray-900 p-5 rounded-lg hover:bg-gray-800 transition duration-200 cursor-pointer">
-                  <p className="text-lg font-bold">Rating: {review.rating}/5</p>
-                  <p className="text-base mt-2">Review: {review.reviews}</p>
+                <div className="relative bg-gray-900 sm:p-5 p-1.5 rounded-lg hover:bg-gray-800 transition duration-200 cursor-pointer">
+                  <p className="sm:text-lg sm:font-bold text-sm text-semibold">Rating: {review.rating}/5</p>
+                  <p className="sm:text-base text-[10px] mt-2">Review: {review.reviews}</p>
                   {user._id === review.owner && (
                     <div className="absolute top-4 right-4 flex gap-2 ">
                       <MdEdit

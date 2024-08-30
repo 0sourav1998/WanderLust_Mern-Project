@@ -39,7 +39,7 @@ const EditlistingModal = ({ editListing, setEditListing, setRefreshData }) => {
   }, [editListing, setValue]);
 
   return (
-    <div className="fixed !mt-0 z-1000 insert-0 h-screen w-screen flex flex-col items-center justify-center backdrop:blur-md overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
+    <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
       <form
         onSubmit={handleSubmit(handleEditListing)}
         enctype="multipart/form-data"

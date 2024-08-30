@@ -29,18 +29,18 @@ const CreateListing = () => {
     <form
       onSubmit={handleSubmit(handleCreateListing)}
       enctype="multipart/form-data"
-      className="bg-gray-900 p-4 rounded-lg shadow-lg w-full max-w-md mx-auto mt-10 transform transition-all duration-300 hover:shadow-xl"
+      className="bg-gray-900 sm:p-4 rounded-lg shadow-lg sm:w-screen max-w-md mx-auto mt-10 sm:ml-72 ml-1 mr-1 transform transition-all duration-300 hover:shadow-xl p-2"
     >
-      <h1 className="text-white text-3xl mb-6 text-center font-bold">Create a Listing</h1>
-      <div className="flex flex-col mb-6">
-        <label htmlFor="title" className="text-white text-lg mb-2">
+      <h1 className="text-white sm:text-3xl text-lg sm:mb-6 mb-2 text-center font-bold">Create a Listing</h1>
+      <div className="flex flex-col sm:mb-6 mb-2">
+        <label htmlFor="title" className="text-white sm:text-lg sm:mb-2 text-xs mb-1">
           Title
         </label>
         <input
           placeholder="Enter Listing Title"
           id="title"
           name="title"
-          className="text-black p-3 rounded-md focus:outline-none focus:ring-4 focus:ring-blue-500 transition-shadow duration-200 shadow-sm hover:shadow-md"
+          className="text-black sm:p-3 p-1 w-[90%] rounded-md focus:outline-none focus:ring-4 focus:ring-blue-500 transition-shadow duration-200 shadow-sm hover:shadow-md"
           {...register("title", { required: true })}
         />
         {errors.title && (
@@ -48,15 +48,15 @@ const CreateListing = () => {
         )}
       </div>
 
-      <div className="flex flex-col mb-6">
-        <label htmlFor="description" className="text-white text-lg mb-2">
+      <div className="flex flex-col sm:mb-6 mb-2">
+        <label htmlFor="description" className="text-white sm:text-lg sm:mb-2 text-xs mb-1">
           Description
         </label>
         <textarea
           placeholder="Enter Listing Description"
           id="description"
           name="description"
-          className="text-black p-3 rounded-md focus:outline-none focus:ring-4 focus:ring-blue-500 transition-shadow duration-200 shadow-sm hover:shadow-md h-32 resize-none"
+          className="text-black sm:p-3 p-1 w-[90%] rounded-md focus:outline-none focus:ring-4 focus:ring-blue-500 transition-shadow duration-200 shadow-sm hover:shadow-md"
           {...register("description", { required: true })}
         />
         {errors.description && (
@@ -64,8 +64,8 @@ const CreateListing = () => {
         )}
       </div>
 
-      <div className="flex flex-col mb-6">
-        <label htmlFor="price" className="text-white text-lg mb-2">
+      <div className="flex flex-col sm:mb-6 mb-2">
+        <label htmlFor="price" className="text-white sm:text-lg sm:mb-2 text-xs mb-1">
           Price
         </label>
         <input
@@ -73,7 +73,7 @@ const CreateListing = () => {
           id="price"
           name="price"
           type="text"
-          className="text-black p-3 rounded-md focus:outline-none focus:ring-4 focus:ring-blue-500 transition-shadow duration-200 shadow-sm hover:shadow-md"
+          className="text-black sm:p-3 p-1 w-[90%] rounded-md focus:outline-none focus:ring-4 focus:ring-blue-500 transition-shadow duration-200 shadow-sm hover:shadow-md"
           {...register("price", { required: true })}
         />
         {errors.price && (
@@ -81,15 +81,15 @@ const CreateListing = () => {
         )}
       </div>
 
-      <div className="flex flex-col mb-6">
-        <label htmlFor="file" className="text-lg text-white mb-2">
+      <div className="flex flex-col sm:mb-6 mb-2">
+        <label htmlFor="file" className="text-white sm:text-lg sm:mb-2 text-xs mb-1">
           Choose an Image
         </label>
         <input
           id="file"
           name="file"
           type="file"
-          className="text-white p-3 rounded-md border border-dashed border-gray-500 focus:outline-none focus:ring-4 focus:ring-blue-500 transition-shadow duration-200 shadow-sm hover:shadow-md bg-gray-800"
+          className="border border-dashed border-gray-500 focus:outline-none text-black sm:p-3 p-1 w-[90%] rounded-md focus:ring-4 focus:ring-blue-500 transition-shadow duration-200 shadow-sm hover:shadow-md"
           {...register("file", { required: true })}
         />
         {errors.file && (
@@ -97,8 +97,8 @@ const CreateListing = () => {
         )}
       </div>
 
-      <div className="flex flex-col mb-6">
-        <label htmlFor="location" className="text-white text-lg mb-2">
+      <div className="flex flex-col sm:mb-6 mb-2">
+        <label htmlFor="location" className="text-white sm:text-lg sm:mb-2 text-xs mb-1">
           Location
         </label>
         <input
@@ -106,7 +106,7 @@ const CreateListing = () => {
           id="location"
           name="location"
           type="text"
-          className="text-black p-3 rounded-md focus:outline-none focus:ring-4 focus:ring-blue-500 transition-shadow duration-200 shadow-sm hover:shadow-md"
+          className="text-black sm:p-3 p-1 w-[90%] rounded-md focus:outline-none focus:ring-4 focus:ring-blue-500 transition-shadow duration-200 shadow-sm hover:shadow-md"
           {...register("location", { required: true })}
         />
         {errors.location && (
@@ -114,8 +114,8 @@ const CreateListing = () => {
         )}
       </div>
 
-      <div className="flex flex-col mb-6">
-        <label htmlFor="country" className="text-white text-lg mb-2">
+      <div className="flex flex-col sm:mb-6 mb-2">
+        <label htmlFor="country" className="text-white sm:text-lg sm:mb-2 text-xs mb-1">
           Country
         </label>
         <input
@@ -123,7 +123,7 @@ const CreateListing = () => {
           id="country"
           name="country"
           type="text"
-          className="text-black p-3 rounded-md focus:outline-none focus:ring-4 focus:ring-blue-500 transition-shadow duration-200 shadow-sm hover:shadow-md"
+          className="text-black sm:p-3 p-1 w-[90%] rounded-md focus:outline-none focus:ring-4 focus:ring-blue-500 transition-shadow duration-200 shadow-sm hover:shadow-md"
           {...register("country", { required: true })}
         />
         {errors.country && (
@@ -133,7 +133,7 @@ const CreateListing = () => {
 
       <button
         type="submit"
-        className="bg-green-600 text-white py-3 px-6 rounded-lg w-full hover:bg-green-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg"
+        className="bg-green-600 text-white sm:py-3 sm:px-6 mt-4 py-1 px-2  rounded-lg sm:w-full w-fit hover:bg-green-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg"
       >
         Create Listing
       </button>

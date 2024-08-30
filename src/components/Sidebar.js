@@ -25,16 +25,16 @@ const Sidebar = () => {
   }
   return (
     <div>
-      <div className='flex flex-col justify-center items-center mt-[40px]'>
+      <div className='flex sm:flex-col flex-row sm:justify-center justify-between items-center sm:mt-[40px] px-2 py-4'>
         {
-          image && <img src={image} className='h-[40px] w-[40px] rounded-full mb-10' alt='image'/>
+          image && <img src={image} className='sm:h-[40px] sm:w-[40px] h-[30px] w-[30px] rounded-full mb-10' alt='image'/>
         }
-        <HiTrendingUp className={`text-2xl ${matchPath("/dashboard/all") ? "text-white" : "text-slate-500"} mb-10 cursor-pointer`} onClick={()=>navigate("/dashboard/all")}/>
-        <FaHotel className={`text-2xl ${matchPath("/dashboard/mylistings") ? "text-white" : "text-slate-500"} mb-10 cursor-pointer`} onClick={()=>navigate("/dashboard/mylistings")}/>
-        <FaBookmark className={`text-2xl ${matchPath("/dashboard/bookmark") ? "text-white" : "text-slate-500"} mb-10 cursor-pointer`} onClick={()=>navigate("/dashboard/bookmark")}/>
-        <IoCreateSharp className={`text-2xl ${matchPath("/dashboard/createListing") ? "text-white" : "text-slate-500"} mb-10 cursor-pointer`} onClick={()=>navigate("/dashboard/createListing")}/>
+        <HiTrendingUp className={`sm:text-2xl text-lg ${matchPath("/dashboard/all") ? "text-white" : "text-slate-500"} mb-10 cursor-pointer`} onClick={()=>navigate("/dashboard/all")}/>
+        <FaHotel className={`sm:text-2xl text-lg ${matchPath("/dashboard/mylistings") ? "text-white" : "text-slate-500"} mb-10 cursor-pointer`} onClick={()=>navigate("/dashboard/mylistings")}/>
+        <FaBookmark className={`sm:text-2xl text-lg ${matchPath("/dashboard/bookmark") ? "text-white" : "text-slate-500"} mb-10 cursor-pointer`} onClick={()=>navigate("/dashboard/bookmark")}/>
+        <IoCreateSharp className={`sm:text-2xl text-lg ${matchPath("/dashboard/createListing") ? "text-white" : "text-slate-500"} mb-10 cursor-pointer`} onClick={()=>navigate("/dashboard/createListing")}/>
         <button
-              className="text-white cursor-pointer p-2 rounded-md w-fit h-fit hover:text-red-800 text-2xl transition-all duration-200 group"
+              className="text-slate-500 cursor-pointer p-2 rounded-md w-fit h-fit hover:text-red-800 text-2xl transition-all duration-200 group sm:-mt-0 -mt-9 sm:mr-0 mr-1"
               onClick={() =>
                 setConfirmationModal({
                   text1: "Are You Sure?",

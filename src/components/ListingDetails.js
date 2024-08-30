@@ -42,10 +42,6 @@ const ListingDetails = () => {
     setReviewModal((prev) => !prev);
   };
 
-  if(!refreshData){
-    <p className="text-white text-2xl mx-auto">No Listing Found</p>
-  }
-
   useEffect(() => {
     fetchListing();
   }, [id , toggleReview]);
@@ -57,8 +53,8 @@ const ListingDetails = () => {
   }
 
   return (
-    <div className="flex flex-col -mt-[50px]">
-      <div className="flex flex-col lg:flex-row bg-gray-900 text-white p-8 rounded-lg shadow-lg max-w-4xl ml-24 mt-24">
+    <div className="flex flex-col z-10 mt-8">
+      <div className="flex flex-col lg:flex-row bg-gray-900 text-white p-8 rounded-lg shadow-lg max-w-4xl sm:ml-24 ml-1 mr-1">
         <div className="lg:w-1/2 mb-6 lg:mb-0">
           <img
             src={listingDetail.image}
@@ -67,26 +63,26 @@ const ListingDetails = () => {
           />
         </div>
         <div className="lg:w-1/2 lg:ml-8 flex flex-col justify-center">
-          <h1 className="text-4xl font-bold mb-4">{listingDetail.name}</h1>
-          <p className="text-lg mb-4">{listingDetail.description}</p>
+          <h1 className="sm:text-4xl sm:font-bold sm:mb-4 text-2xl font-semibold mb-2">{listingDetail.name}</h1>
+          <p className="sm:text-lg sm:mb-4 text-sm mb-2">{listingDetail.description}</p>
           <div className="flex items-center gap-2">
-            <FaRupeeSign className="text-xl mb-3.5" />{" "}
-            <p className="text-xl font-semibold mb-4">
-              <span className="text-green-400">: {listingDetail.price}</span>
+            <FaRupeeSign className="sm:text-xl text-sm sm:mb-3.5 mb-2" />{" "}
+            <p className="sm:text-xl sm:font-semibold sm:mb-4 text-lg font-semibold mb-2">
+              <span className="text-green-400">: {listingDetail.price} / night</span>
             </p>
           </div>
 
           <div className="flex items-center gap-2">
-            <FaMapLocationDot className="text-xl mb-3.5" />{" "}
-            <p className="text-xl font-semibold mb-4">
+            <FaMapLocationDot className="sm:text-xl sm:mb-3.5 text-sm mb-2" />{" "}
+            <p className="sm:text-xl font-semibold sm:mb-4 text-sm mb-2">
               <span className="text-green-400">
                 : {listingDetail.location}
               </span>
             </p>
           </div>
           <div className="flex items-center gap-2">
-            <MdPlace className="text-xl mb-3.5" />{" "}
-            <p className="text-xl font-semibold mb-4">
+            <MdPlace className="sm:text-xl sm:mb-3.5 text-sm mb-2" />{" "}
+            <p className="sm:text-xl text-sm font-semibold sm:mb-4 mb-2">
               <span className="text-green-400">: {listingDetail.country}</span>
             </p>
           </div>
@@ -95,7 +91,7 @@ const ListingDetails = () => {
           className="text-white bg-green-600 cursor-pointer p-2 rounded-md w-fit h-fit group mr-4"
           onClick={handleToggleReview}
         >
-          <FcRating className="text-xl" />
+          <FcRating className="sm:text-xl text-sm" />
         </button>
         {user._id === listingDetail.owner && (
           <div className="flex gap-2">

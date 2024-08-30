@@ -39,25 +39,25 @@ const ListingCard = ({ listing }) => {
   };
 
   return (
-    <div className="flex justify-center items-center">
+    <div className="">
       <Link to={`/dashboard/listing/${listing._id}`}>
-        <div className="relative">
-          <div className="h-[350px] w-[350px] bg-slate-950 rounded-lg overflow-hidden shadow-md shadow-white hover:opacity-60 hover:cursor-pointer transition-all duration-200">
+        <div className="relative ">
+          <div className="sm:h-[400px] sm:w-[300px] h-fit w-fit bg-slate-950 rounded-lg overflow-hidden shadow-md shadow-white hover:opacity-60 hover:cursor-pointer transition-all duration-200 sm:mr-8">
             <img
               src={listing.image}
               alt={listing.name}
-              className="h-[200px] w-full object-cover p-5"
+              className="h-fit w-fit object-cover p-5"
             />
             <div className="p-4 flex flex-col gap-2">
               <h2 className="text-xl font-semibold text-white">
                 {listing.name}
               </h2>
               <p className="text-sm text-gray-400">{listing.description}</p>
-              <p className="text-lg font-medium text-white">{listing.price}</p>
+              <p className="text-lg font-medium text-white">Rs. {listing.price}/night</p>
             </div>
           </div>
           <FaBookmark
-            className={`absolute top-5 right-8 ${
+            className={`absolute top-5 sm:right-28 right-6 ${
               isBookmarked() ? "text-blue-500" : "text-white"
             }`}
             onClick={bookmarkAddOrRemove}

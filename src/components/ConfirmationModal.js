@@ -3,7 +3,7 @@ import React from 'react'
 const ConfirmationModal = ({modalData}) => {
   return (
     <div className="fixed inset-0 z-[1000] !mt-0 flex flex-col  items-center justify-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
-      <div className="w-[500px] bg-slate-800 p-6 rounded-md flex flex-col gap-y-4">
+      <div className="sm:w-[500px] w-[250px] bg-slate-800 sm:p-6 p-3 rounded-md flex flex-col sm:gap-y-4 gap-y-3">
   
             <p className='text-white text-xl mb-3'>{modalData?.text1}</p>
             <p className='text-white text-xl mb-4'>{modalData?.text2}</p>

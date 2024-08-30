@@ -38,10 +38,10 @@ const RatingAndReview = ({ listingId , setReviewModal , setRefreshData , reviewM
     setReviewModal(false)
   }
   return (
-    <div className="fixed inset-0 z-[1000] !mt-0 flex flex-col  items-center justify-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
-      <div className="w-[500px] bg-slate-800 p-6 rounded-md flex flex-col gap-y-4">
+    <div className="fixed h-screen w-screen inset-0 z-[1000] !mt-0 flex flex-col  items-center justify-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
+      <div className="sm:w-[500px] w-[200px] bg-slate-800 p-6 rounded-md flex flex-col gap-y-4">
         <div className="flex justify-between border-b border-white">
-            <h1 className="mb-6 text-2xl font-bold text-center">
+            <h1 className="sm:mb-6 sm:text-2xl sm:font-bold mb-3 text-sm font-semibold text-center text-white">
             {
               create ? "Add Your Rating and Review" : "Edit Your Rating And Review"
             }
@@ -69,7 +69,7 @@ const RatingAndReview = ({ listingId , setReviewModal , setRefreshData , reviewM
         </div>
         <button
           onClick={create ? handleReviewSubmit : edit ? handleReviewEdit : null}
-          className="w-full mt-4 text-xl bg-green-500 hover:bg-green-600 text-white rounded-md p-3 transition duration-300 ease-in-out"
+          className="w-full sm:mt-4 sm:text-xl mt-2 text-xs bg-green-500 hover:bg-green-600 text-white rounded-md sm:p-3 p-2 transition duration-300 ease-in-out"
         >
           {create ? "Submit Review" : edit ? "Save Changes" : "Loading"}
         </button>
