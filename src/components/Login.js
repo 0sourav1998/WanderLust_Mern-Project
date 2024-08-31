@@ -17,7 +17,7 @@ const Login = () => {
         <h2 className="sm:text-3xl text-xl text-white sm:mb-6 mb-4">Login</h2>
         <div className="flex flex-col sm:w-[70%] w-[80%]">
           <label htmlFor="email" className="text-white sm:text-lg sm:mb-2 text-sm mb-1">
-            Enter Your Email
+            Enter Email
           </label>
           <input
             id="email"
