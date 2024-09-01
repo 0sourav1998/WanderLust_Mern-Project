@@ -23,7 +23,9 @@ export const login = (body, navigate) => {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...");
     try {
+      console.log("hello2")
       const res = await apiConnector("POST", LOGIN, body);
+      console.log("hello3")
       if (res?.data?.success) {
         toast.success("Login Successfully");
           dispatch(setToken(res?.data?.token));

@@ -9,6 +9,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogin = async () => {
+    console.log("heloo")
     dispatch(login({ email: email, password: password }, navigate));
   };
   return (
