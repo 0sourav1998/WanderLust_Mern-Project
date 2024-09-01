@@ -39,9 +39,9 @@ const RatingAndReview = ({ listingId , setReviewModal , setRefreshData , reviewM
   }
   return (
     <div className="fixed h-screen w-screen inset-0 z-[1000] !mt-0 flex flex-col  items-center justify-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
-      <div className="sm:w-[500px] w-[200px] bg-slate-800 p-6 rounded-md flex flex-col gap-y-4">
+      <div className="sm:w-[500px] w-[280px] bg-slate-800 p-6 rounded-md flex flex-col gap-y-4 sm:mr-0 mr-4">
         <div className="flex justify-between border-b border-white">
-            <h1 className="sm:mb-6 sm:text-2xl sm:font-bold mb-3 text-sm font-semibold text-center text-white">
+            <h1 className="sm:mb-6 sm:text-xl sm:font-bold mb-3 text-sm font-semibold text-center text-white">
             {
               create ? "Add Your Rating and Review" : "Edit Your Rating And Review"
             }

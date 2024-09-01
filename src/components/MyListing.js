@@ -48,7 +48,7 @@ const MyListing = () => {
       <div className="mb-4 mt-2">
         <h1>My Listings</h1>
       </div>
-      <div className="grid sm:grid-cols-3 grid-cols-1">
+      <div className="grid sm:grid-cols-3 grid-cols-1 gap-4">
         {listings.map((listing) => (
           <div className="relative flex justify-center items-center sm:-ml-10" key={listing._id}>
             <Link to={`/dashboard/listing/${listing._id}`}>
